@@ -18,8 +18,7 @@ async def get_info(url: Text) -> Text:
 	async with aiohttp.ClientSession(raise_for_status=True) as session:
 		async with session.head(url, allow_redirects=True) as resp:
 			url = str(resp.url)
-	params = {k: v for k, v in pattern_id.search(url).groupdict().items() if v}
-	async with aiohttp.ClientSession(raise_for_status=True) as session:
+		params = {k: v for k, v in pattern_id.search(url).groupdict().items() if v}
 		async with session.get('https://api.bilibili.com/x/web-interface/view', params=params) as resp:
 			ret = await resp.json()
 	data = ret['data']
