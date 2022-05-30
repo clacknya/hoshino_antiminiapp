@@ -10,7 +10,7 @@ import datetime
 from hoshino.typing import MessageSegment
 
 pattern_id = re.compile(r'\bbilibili\.com\/video\/(?:av(?P<aid>[0-9]+)|(?P<bvid>bv[0-9a-zA-Z]+))', flags=re.I)
-pattern_url = re.compile(r'\bbilibili\.com\/video\/(?:av[0-9]+|bv[0-9a-zA-Z]+)|\bb23\.tv\/[a-zA-Z0-9]+', flags=re.I)
+pattern_url = re.compile(r'\bbilibili\.com\/(?:video\/)?(?:av[0-9]+|bv[0-9a-zA-Z]+)|\bb23\.tv\/[a-zA-Z0-9]+', flags=re.I)
 
 tz = datetime.timezone(datetime.timedelta(hours=+8))
 
