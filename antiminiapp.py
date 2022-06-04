@@ -35,25 +35,6 @@ url_map = {
 	bilibili.parse_urls: bilibili.get_info,
 }
 
-@sv.on_notice('group_upload')
-async def group_upload(session: nonebot.NoticeSession):
-	self_info = await session.bot.get_login_info()
-	chain = [
-		nonebot.MessageSegment.node_custom(
-			user_id=session.ctx.self_id,
-			nickname=self_info['nickname'],
-			content=f"{session.ctx.user_id} 上传了文件 {session.ctx.file.get('name')}",
-		),
-		nonebot.MessageSegment.node_custom(
-			user_id=session.ctx.self_id,
-			nickname=self_info['nickname'],
-			content=session.ctx.file.get('url'),
-		),
-	]
-	for node in chain:
-		node['data']['name'] = self_info['nickname']
-	await session.bot.send_group_forward_msg(group_id=session.ctx.group_id, messages=chain)
-
 @sv.on_message('group')
 async def antiminiapp(bot, ev: nonebot.message.CQEvent):
 	if ev.detail_type == 'guild':
