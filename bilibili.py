@@ -24,7 +24,7 @@ async def get_info(url: Text) -> Text:
 	if ret['code'] == 0:
 		data = ret['data']
 		return (
-			f"{MessageSegment.image(data['pic'])}"
+			f"{MessageSegment.image(data['pic'])}\n"
 			f"av{data['aid']}\n"
 			f"{data['title']}\n"
 			f"UP:{data['owner']['name']}\n"
@@ -47,5 +47,5 @@ async def get_info(url: Text) -> Text:
 def parse_urls(text: Text) -> List[Text]:
 	return list(map(lambda x: 'https://' + x, set(pattern_url.findall(text))))
 
-async def miniapp(meta: Dict) -> Text:
-	return await get_info(meta.get('qqdocurl'))
+async def miniapp(meta: Dict, key: Text) -> Text:
+	return await get_info(meta.get(key))

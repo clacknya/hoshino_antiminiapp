@@ -3,6 +3,7 @@
 
 from typing import Dict
 
+import functools
 import nonebot
 import json
 import yaml
@@ -17,7 +18,8 @@ sv = Service('反小程序', visible=True, enable_on_default=False)
 appid_map = {
 	'1014558937': common.webpage,
 	'1103188687': common.webpage,
-	'1109937557': bilibili.miniapp,
+	'1109937557': functools.partial(bilibili.miniapp, key='qqdocurl'),
+	'100951776':  functools.partial(bilibili.miniapp, key='jumpUrl'),
 }
 
 # def com_tencent_miniapp(meta: Dict) -> Dict:
